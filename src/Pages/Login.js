@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from "react";
-import { ReactComponent as FaceIcon }  from "../Icon/search-svg.svg"
+import { ReactComponent as FaceIcon }  from "../Icon/face.svg"
 import { ReactComponent as GoogleIcon }  from "../Icon/google.svg"
 import { useSelector, useDispatch } from 'react-redux';
 import { clearError, loginAction } from '../Store/Actions/UserAction';
