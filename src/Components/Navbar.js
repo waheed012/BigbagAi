@@ -19,30 +19,31 @@ const Navbar = ({ onLoginClick ,onSinupClick}) => {
         </div>
 
         {/* Search Bar with Dropdown */}
-        <div className="rounded-lg border bg-slate-200 flex items-center space-x-2 w-full md:w-auto">
-          {/* Search Icon */}
-          <div className="p-4">
-            <img src={SearchIcon} className="w-6 h-6 pr-2" alt="Search Icon" />
-          </div>
+        <div class="rounded-lg border bg-slate-200 flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 w-full md:w-auto">
 
-          {/* Input Field */}
-          <input
-            type="text"
-            placeholder="Search"
-            className="border-black focus:outline-none bg-slate-200 flex-grow"
-          />
+  <div class="p-4">
+    <img src={SearchIcon} class="w-6 h-6 pr-2" alt="Search Icon" />
+  </div>
 
-          <div className="border-r-2 border-gray-400 h-6 p-4"></div>
-          <div className="ml-2 p-4">
-            <select className="bg-transparent outline-none">
-              <option>See More Categories</option>
-              <option value="search">1</option>
-              <option value="filter">2</option>
-              <option value="filter">3</option>
-              <option value="filter">4</option>
-            </select>
-          </div>
-        </div>
+
+  <input
+    type="text"
+    placeholder="Search"
+    class="border-black focus:outline-none bg-slate-200 flex-grow"
+  />
+
+  <div class=" border-r-2 border-gray-400 h-6 md:h-auto p-4"></div>
+  <div class="ml-2 p-4">
+    <select class="bg-transparent outline-none">
+      <option>See More Categories</option>
+      <option value="search">1</option>
+      <option value="filter">2</option>
+      <option value="filter">3</option>
+      <option value="filter">4</option>
+    </select>
+  </div>
+</div>
+
 
         {/* Login and Signup Buttons */}
         <div className="mt-4 md:mt-0 space-x-4">
