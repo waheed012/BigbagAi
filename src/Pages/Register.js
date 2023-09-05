@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearError, RegisterAction } from '../Store/Actions/UserAction';
 import Login from "./Login";
 
-const Register = ({onClose}) => {
+const Register = () => {
   const [isComponentVisible, setIsComponentVisible] = useState(false);
   const dispatch = useDispatch();
   const Navgate = useNavigate();
@@ -144,12 +144,7 @@ const Register = ({onClose}) => {
               <p className="text-xs opacity-50 mb-3 text-start ">
                 You also agree to receive product-related marketing emails from Designership, which you can unsubscribe from at any time.
               </p>
-              <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-        >
-          Close
-        </button>
+           
             </div>
       
           </div>

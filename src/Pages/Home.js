@@ -13,16 +13,12 @@ const Home = () => {
     setIsLoginPopupOpen(true);
   };
 
-  const handleCloseLoginPopup = () => {
-    setIsLoginPopupOpen(false);
-  };
+
   const handleSinupClick = () => {
     setIsSinupPopupOpen(true);
   };
 
-  const handleCloseSinupPopup = () => {
-    setIsSinupPopupOpen(false);
-  };
+
 
 
 
@@ -51,10 +47,29 @@ const Home = () => {
       <Card/>
       </div>
       {isLoginPopupOpen && (
-        <Login onClose={handleCloseLoginPopup} />
+        <div>
+
+        <Login />
+        <button
+        className="absolute top-2 right-2 text-red-500"
+        onClick={() => setIsLoginPopupOpen(false)}
+      >
+        Close
+      </button>
+      </div>
       )}
        {isSinupPopupOpen && (
-        <Register onClose={handleCloseSinupPopup} />
+         <div>
+
+<Register />
+         <button
+         className="absolute top-2 right-2 text-red-500"
+         onClick={() => setIsSinupPopupOpen(false)}
+       >
+         Close
+       </button>
+       </div>
+        
       )}
 
     
