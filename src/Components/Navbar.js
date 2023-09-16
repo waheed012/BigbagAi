@@ -1,62 +1,131 @@
 import React, { useState } from 'react';
 import SearchIcon from '../Icon/search-svg.svg';
-import logo from "../Icon/Logo.png"
+import logo from "../Icon/Logo1.png"
+import Menu from "../Icon/menu.svg"
+import close from "../Icon/close.svg"
+
+import Modal from 'react-modal';
+import voice from "../Icon/voice.svg"
+import { useSpeechRecognition } from 'react-speech-recognition';
+
+import MenuList from './MenuList';
 
 const Navbar = ({ onLoginClick ,onSinupClick}) => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { transcript, startListening, stopListening } = useSpeechRecognition();
+const [searchOption, setSearchOption] = useState('Search Here'); // Default search option
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track menu open/close
+ 
 
-  const [searchOption, setSearchOption] = useState('See More Categories'); // Default search option
+  const openModal = () => {
+    setModalIsOpen(true);
+    startListening();
+  };
 
+  const closeModal = () => {
+    setModalIsOpen(false);
+    stopListening();
+    console.log('Transcript:', transcript); // Display transcript in console
+  };
+
+  // Toggle the menu state when the menu icon is clicked
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   const handleSearchOptionChange = (e) => {
     setSearchOption(e.target.value);
   };
+ 
+  const navbarClass = isMenuOpen ? "fixed top-0 left-0 w-full bg-white z-50" : "";
 
   return (
-    <div className="p-4">
-      <div className="container mx-auto flex flex-wrap justify-between items-center">
+    <div className={`p-4 ${navbarClass}`}>
+      <div className="container mx-auto  flex flex-wrap justify-between items-center">
         {/* Logo */}
-        <div className="text-red-900 text-2xl font-bold mb-4 md:mb-0">
-        <img src={logo} className="w-40 h-12 pr-2" alt="Logo" />
+        <div className="flex w-full md:w-auto md:text-center pt-2 pb-4 md:p-0 mx-auto md:mx-0 justify-between md:justify-normal">
+          <div>
+          <img src={logo} className="w-40 h-12 pr-2 " alt="Logo" />
+          </div>
+          {isMenuOpen && (
+              <div>
+              <img src={close} className="w-10 h-10  md:hidden" alt="Logo" onClick={toggleMenu} />
+            </div>
+          
+        )}
+        {!isMenuOpen &&
+            (
+              <div className="md:hidden">
+              <img src={Menu} className="w-10 h-10  md:hidden" alt="Logo" onClick={toggleMenu} />
+            </div>
+          )
+        }
+          
+         
         </div>
 
         {/* Search Bar with Dropdown */}
-        <div class="rounded-lg border bg-slate-200 flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2 w-full md:w-auto">
+        <div className="rounded-lg border bg-slate-200 flex flex-col md:flex-row mx-auto md:mx-0 overflow-hidden items-center space-y-2 md:space-y-0 md:space-x-2 max-w-screen-xl  md:w-[50%]">
 
-  <div class="p-4">
-    <img src={SearchIcon} class="w-6 h-6 pr-2" alt="Search Icon" />
-  </div>
+  <div className="p-4 flex w-full ">
+    <img src={SearchIcon} className="w-8 h-8 pr-3" alt="Search Icon" />
+  
 
 
   <input
     type="text"
     placeholder="Search"
-    class="border-black focus:outline-none bg-slate-200 flex-grow"
+    className="border-black focus:outline-none bg-slate-200 w-[30%] flex-grow"
   />
 
-  <div class=" border-r-2 border-gray-400 h-6 md:h-auto p-4"></div>
-  <div class="ml-2 p-4">
-    <select class="bg-transparent outline-none">
-      <option>See More Categories</option>
-      <option value="search">1</option>
-      <option value="filter">2</option>
-      <option value="filter">3</option>
-      <option value="filter">4</option>
-    </select>
+<button onClick={openModal} className="border hover:border-white    rounded-3xl  ml-2 mr-2">
+<img src={voice} className="w-8 h-8 " alt="voice Icon" />
+</button>
+  
+   
+  
   </div>
+  <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Voice Recognition Modal"
+      >
+        <h2>Voice Recognition Modal</h2>
+        <button onClick={closeModal}>Close</button>
+      </Modal>
+
+  
+
 </div>
 
 
+{isMenuOpen && (
+          <div className="md:hidden">
+            <MenuList  closeMenu={toggleMenu} login={onLoginClick} Sinup={onSinupClick} />
+          </div>
+        )}
+
+
         {/* Login and Signup Buttons */}
-        <div className="mt-4 md:mt-0 space-x-4">
-          <button className="bg-white border border-black text-black px-4 py-2 rounded-xl" onClick={onLoginClick}>
-            Login
-          </button>
-          <button className="bg-red-400 text-white px-4 py-2 rounded-xl"  onClick={onSinupClick}>Signup</button>
-        </div>
-        {/* {showLoginForm && <Login onClose={closeLoginForm} />}
-        {showSinupForm && <Register onClose={closeSinupForm} />} */}
+     
+          <div className="hidden md:flex justify-center mt-4 mb-4 md:p-0 space-x-2 mx-auto md:mx-0 ">
+            <button
+              className="bg-white border border-black text-black px-4 py-2 rounded-xl"
+              onClick={onLoginClick}
+            >
+              Login
+            </button>
+            <button
+              className="bg-red-400 text-white px-4 py-2 rounded-xl mt-2 md:mt-0 md:ml-2"
+              onClick={onSinupClick}
+            >
+              Signup
+            </button>
+          </div>
       </div>
     </div>
   );
 };
 
 export default Navbar;
+
+

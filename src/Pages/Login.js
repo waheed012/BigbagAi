@@ -1,11 +1,14 @@
 import React,{useEffect,useState} from "react";
 import { ReactComponent as FaceIcon }  from "../Icon/face.svg"
+import { ReactComponent as Close }  from "../Icon/close.svg"
+
+
 import { ReactComponent as GoogleIcon }  from "../Icon/google.svg"
 import { useSelector, useDispatch } from 'react-redux';
 import { clearError, loginAction } from '../Store/Actions/UserAction';
 import { useNavigate } from 'react-router-dom';
 import Register from "./Register";
-const Login = () => {
+const Login = ({close}) => {
   const [isComponentVisible, setIsComponentVisible] = useState(false);
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.user
@@ -62,9 +65,13 @@ const Login = () => {
 
 
         
-        <div className="bg-transparent bg-slate-300 bg-opacity-20 fixed top-0 left-0 w-full h-full flex items-center justify-center">
+        <div className="bg-transparent bg-red-200 bg-opacity-10 fixed top-0 left-4 w-full h-full flex items-center justify-center">
       <div className="popup-overlay">
           <div className="popup-content bg-white p-6 rounded-lg shadow-xl max-w-md w-11/12">
+          <div className="flex justify-end  ">
+            <Close className="w-5 h-5 cursor-pointer border rounded-3xl " onClick={close} />
+          </div>
+          
            <div className="flex justify-between">
            <h2 className="text-center text-2xl mb-4">Sign In</h2>
             <button className="text-end text-sm text-red-500 pb-3" onClick={RegisterShow}>Do you have an account</button>
@@ -123,7 +130,7 @@ const Login = () => {
           </div>
           {isComponentVisible && (
         <>
-          <Register />
+          <Register close={close} />
           
         </>
       )}

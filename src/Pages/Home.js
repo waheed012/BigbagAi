@@ -4,6 +4,7 @@ import MenuBar from '../Components/MenuBar'
 import Card from '../Components/Card'
 import Login from './Login'
 import Register from './Register'
+import MenuList from '../Components/MenuList'
 
 const Home = () => {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
@@ -11,6 +12,7 @@ const Home = () => {
 
   const handleLoginClick = () => {
     setIsLoginPopupOpen(true);
+
   };
 
 
@@ -25,49 +27,51 @@ const Home = () => {
     
   return (
     <div>
+
+      
         <Navbar onLoginClick={handleLoginClick} onSinupClick={handleSinupClick} />
+     
         <MenuBar/>
        
-      <div className='container mx-auto flex space-x-4'>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
+        <div className="container mx-auto space-x-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Center the cards in the mobile view */}
+        <div className="mx-auto md:space-x-4 md:col-span-2 lg:col-span-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
       </div>
-      <div className='container mx-auto flex space-x-4'>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
+      <div className="container mx-auto space-x-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Center the cards in the mobile view */}
+        <div className="mx-auto md:space-x-4 md:col-span-2 lg:col-span-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
       </div>
-      <div className='container mx-auto flex space-x-4'>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
+      <div className="container mx-auto space-x-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Center the cards in the mobile view */}
+        <div className="mx-auto md:space-x-4 md:col-span-2 lg:col-span-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+        </div>
       </div>
       {isLoginPopupOpen && (
-        <div>
+        <div className='container mx-auto  '>
 
-        <Login />
-        <button
-        className="absolute top-2 right-2 text-red-500"
-        onClick={() => setIsLoginPopupOpen(false)}
-      >
-        Close
-      </button>
+        <Login close={() => setIsLoginPopupOpen(false)}/>
+       
       </div>
       )}
        {isSinupPopupOpen && (
-         <div>
+         <div className='container mx-auto'>
 
-<Register />
-         <button
-         className="absolute top-2 right-2 text-red-500"
-         onClick={() => setIsSinupPopupOpen(false)}
-       >
-         Close
-       </button>
+<Register close={() => setIsSinupPopupOpen(false)}/>
+         
        </div>
         
       )}
