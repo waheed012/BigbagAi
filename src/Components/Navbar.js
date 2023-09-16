@@ -4,7 +4,7 @@ import logo from "../Icon/Logo1.png"
 import Menu from "../Icon/menu.svg"
 import close from "../Icon/close.svg"
 
-import Modal from 'react-modal';
+
 import voice from "../Icon/voice.svg"
 import { useSpeechRecognition } from 'react-speech-recognition';
 
@@ -84,14 +84,7 @@ const [searchOption, setSearchOption] = useState('Search Here'); // Default sear
    
   
   </div>
-  <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Voice Recognition Modal"
-      >
-        <h2>Voice Recognition Modal</h2>
-        <button onClick={closeModal}>Close</button>
-      </Modal>
+  
 
   
 
